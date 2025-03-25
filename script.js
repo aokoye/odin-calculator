@@ -30,6 +30,7 @@ let operate = function(a, op, b, next) {
     right = [result, op]
     console.log(right)
 
+    document.getElementById("display").innerHTML = Math.round(100* result) / 100
     return result
 }
 
@@ -43,6 +44,7 @@ btnClear.addEventListener('click',(event) => {
     op = ''
     result =''
     console.log('clear')
+    document.getElementById("display").innerHTML = ''
     console.log(keyedNumbers)
 });
 
@@ -52,11 +54,13 @@ btn0.addEventListener('click',(event) => {
     if (op === '/') {
         console.log(op)
         console.log(right)
+        document.getElementById("display").innerHTML = 'Try again...'
         return console.log("Try again...(press clear first)")
     } else{keyedNumbers.push(0)
         console.log('clicked 0')
         console.log(keyedNumbers)
         console.log(op)
+        document.getElementById("display").innerHTML = keyedNumbers.join('')
     }
 });
 
@@ -67,6 +71,7 @@ btn1.addEventListener('click',(event) => {
     keyedNumbers.push(1)
     console.log('clicked 1');
     console.log(keyedNumbers)
+    document.getElementById("display").innerHTML = keyedNumbers.join('')
 });
 
 
@@ -76,6 +81,7 @@ btn2.addEventListener('click',(event) => {
     keyedNumbers.push(2)
     console.log('clicked 2');
     console.log(keyedNumbers)
+    document.getElementById("display").innerHTML = keyedNumbers.join('')
 });
 
 
@@ -85,6 +91,7 @@ btn3.addEventListener('click',(event) => {
     keyedNumbers.push(3)
     console.log('clicked 3');
     console.log(keyedNumbers)
+    document.getElementById("display").innerHTML = keyedNumbers.join('')
 });
 
 
@@ -94,6 +101,7 @@ btn4.addEventListener('click',(event) => {
     keyedNumbers.push(4)
     console.log('clicked 4');
     console.log(keyedNumbers)
+    document.getElementById("display").innerHTML = keyedNumbers.join('')
 });
 
 let btn5 = document.querySelector('#five');
@@ -102,6 +110,7 @@ btn5.addEventListener('click',(event) => {
     keyedNumbers.push(5)
     console.log('clicked 5');
     console.log(keyedNumbers)
+    document.getElementById("display").innerHTML = keyedNumbers.join('')
 });
 
 let btn6 = document.querySelector('#six');
@@ -111,6 +120,7 @@ btn6.addEventListener('click',(event) => {
     console.log('clicked 6');
     console.log(keyedNumbers)
     console.log(right)
+    document.getElementById("display").innerHTML = keyedNumbers.join('')
 });
 
 let btn7 = document.querySelector('#seven');
@@ -120,6 +130,7 @@ btn7.addEventListener('click',(event) => {
     console.log('clicked 7');
     console.log(keyedNumbers)
     console.log(right)
+    document.getElementById("display").innerHTML = keyedNumbers.join('')
 });
 
 let btn8 = document.querySelector('#eight');
@@ -129,6 +140,7 @@ btn8.addEventListener('click',(event) => {
     console.log('clicked 8');
     console.log(keyedNumbers)
     console.log(right)
+    document.getElementById("display").innerHTML = keyedNumbers.join('')
 });
 
 let btn9 = document.querySelector('#nine');
@@ -138,6 +150,7 @@ btn9.addEventListener('click',(event) => {
     console.log('clicked 9');
     console.log(keyedNumbers)
     console.log(right)
+    document.getElementById("display").innerHTML = keyedNumbers.join('')
 });
 
 
@@ -148,6 +161,7 @@ btnAdd.addEventListener('click',(event) => {
 
     if (keyedNumbers.length < 1){
         console.log('woops')
+        document.getElementById("display").innerHTML = 'woops'
         return false
     }
 
@@ -157,6 +171,7 @@ btnAdd.addEventListener('click',(event) => {
         add(a, b);
         right = [a, op]
         console.log(a)
+        document.getElementById("display").innerHTML = Math.round(100 * a) / 100
         return right = [a, op]
     } 
     else if (right[1] === '-' || right[1] === 'x'|| right[1] === '/') {
@@ -183,6 +198,7 @@ btnSub.addEventListener('click',(event) => {
 
     if (keyedNumbers.length < 1){
         console.log('woops')
+        document.getElementById("display").innerHTML = 'woops'
         return false
     }
 
@@ -192,6 +208,7 @@ btnSub.addEventListener('click',(event) => {
         a = (a) - (b);
         right = [a, op]
         console.log(a)
+        document.getElementById("display").innerHTML = Math.round(100 * a) / 100
         return right = [a, op]
     } 
     else if (right[1] === '+' || right[1] === 'x'|| right[1] === '/') {
@@ -217,6 +234,7 @@ btnMul.addEventListener('click',(event) => {
 
     if (keyedNumbers.length < 1){
         console.log('woops')
+        document.getElementById("display").innerHTML = 'woops'
         return false
     }
 
@@ -226,6 +244,7 @@ btnMul.addEventListener('click',(event) => {
         a = (a) * (b);
         right = [a, op]
         console.log(a)
+        document.getElementById("display").innerHTML = Math.round(100 * a) / 100
         return right = [a, op]
     } 
     else if (right[1] === '+' || right[1] === '-'|| right[1] === '/') {
@@ -252,6 +271,7 @@ btnDiv.addEventListener('click',(event) => {
 
     if (keyedNumbers.length < 1){
         console.log('woops')
+        document.getElementById("display").innerHTML = 'woops'
         return false
     }
 
@@ -261,6 +281,7 @@ btnDiv.addEventListener('click',(event) => {
         a = (a) / (b);
         right = [a, op]
         console.log(a)
+        document.getElementById("display").innerHTML = Math.round(100 * a) / 100
         return right = [a, op]
     } 
     else if (right[1] === '+' || right[1] === '-'|| right[1] === 'x') {
@@ -304,6 +325,7 @@ btnequ.addEventListener('click',(event) => {
 
     console.log('clicked equals');
     console.log(result)
+    document.getElementById("display").innerHTML = Math.round(100 * result) / 100
 
     result = ''
 });

@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Roboto Mono", monospace;
+    background-color: #FFECD1;
+    height: 100vh;
+    overflow: hidden
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 225px;
+    padding: 20px;
+    background-color: #001524;
+}
+
+#display {
+    width: 225px;
+    height: 50px;
+    background-color: gainsboro; 
+    text-align: right;
+    font-size: 30px;
+}
+
+button#clear{
+    width: 225px;
+    background-color: #FF7D00;
+    margin: 20px 0;
+}
+
+button#clear:active {
+    background: #e56f01;
+    -webkit-box-shadow: inset 0px 0px 5px #f57902;
+       -moz-box-shadow: inset 0px 0px 5px #f57902;
+            box-shadow: inset 0px 0px 5px #f57902;
+     outline: none;
+}
+
+button#equal {
+    background-color: #78290F;
+}
+
+button#equal:active {
+    background: #71270e;
+    -webkit-box-shadow: inset 0px 0px 5px #69250e;
+       -moz-box-shadow: inset 0px 0px 5px #69250e;
+            box-shadow: inset 0px 0px 5px #69250e;
+     outline: none;
+}
+
+.pad {
+    display: flex;
+    width: 225px;
+}
+
+.col1, .col2, .col3 {
+    display: flex;
+    flex-direction: column;
+}
+
+.operators{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+button {
+    background-color: #15616d;
+    color: #FFECD1;
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    margin: 2px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 20px;
+}
+button:active {
+    background: #145b66;
+    -webkit-box-shadow: inset 0px 0px 5px #12515b;
+       -moz-box-shadow: inset 0px 0px 5px #12515b;
+            box-shadow: inset 0px 0px 5px #12515b;
+     outline: none;
+}
