@@ -1,13 +1,37 @@
-let add = (a, b) => a + b;
+let add = (a, b) => Number(a) + Number(b);
 let subtract = (a, b) => (a) - (b);
 let multiply = (a, b) => (a) * (b);
 let divide = (a, b) => (a) / (b);
 let op;
 let a;
+let result;
+let next;
 
 let keyedNumbers = []
 let left = []
 let right = []
+
+let operate = function(a, op, b, next) {
+    if (op === '+') {
+        result = add(a, b)
+    } else if (op === '-') {
+        result = subtract(a, b)
+    } else if (op === 'x') {
+        result = multiply(a, b)
+    } else if (b === 0 && op === '/') {
+        return 'Absolutely not.'
+    }  else {
+        result = divide(a, b)
+    }
+
+    op = next
+    keyedNumbers = []
+    console.log(result)
+    right = [result, op]
+    console.log(right)
+
+    return result
+}
 
 // Buttons and their click events
 let btnClear = document.querySelector('#clear');
@@ -17,6 +41,7 @@ btnClear.addEventListener('click',(event) => {
     right = []
     left = []
     op = ''
+    result =''
     console.log('clear')
     console.log(keyedNumbers)
 });
@@ -24,9 +49,15 @@ btnClear.addEventListener('click',(event) => {
 let btn0 = document.querySelector('#zero');
 
 btn0.addEventListener('click',(event) => {
-    keyedNumbers.push(0)
-    console.log('clicked 0');
-    console.log(keyedNumbers)
+    if (op === '/') {
+        console.log(op)
+        console.log(right)
+        return console.log("Try again...(press clear first)")
+    } else{keyedNumbers.push(0)
+        console.log('clicked 0')
+        console.log(keyedNumbers)
+        console.log(op)
+    }
 });
 
 
@@ -73,6 +104,78 @@ btn5.addEventListener('click',(event) => {
     console.log(keyedNumbers)
 });
 
+let btn6 = document.querySelector('#six');
+
+btn6.addEventListener('click',(event) => {
+    keyedNumbers.push(6)
+    console.log('clicked 6');
+    console.log(keyedNumbers)
+    console.log(right)
+});
+
+let btn7 = document.querySelector('#seven');
+
+btn7.addEventListener('click',(event) => {
+    keyedNumbers.push(7)
+    console.log('clicked 7');
+    console.log(keyedNumbers)
+    console.log(right)
+});
+
+let btn8 = document.querySelector('#eight');
+
+btn8.addEventListener('click',(event) => {
+    keyedNumbers.push(8)
+    console.log('clicked 8');
+    console.log(keyedNumbers)
+    console.log(right)
+});
+
+let btn9 = document.querySelector('#nine');
+
+btn9.addEventListener('click',(event) => {
+    keyedNumbers.push(9)
+    console.log('clicked 9');
+    console.log(keyedNumbers)
+    console.log(right)
+});
+
+
+let btnAdd = document.querySelector('#sum');
+
+btnAdd.addEventListener('click',(event) => {
+    op = '+'
+
+    if (keyedNumbers.length < 1){
+        console.log('woops')
+        return false
+    }
+
+    if (right[1] === '+') {
+        let b = keyedNumbers.join('')
+        keyedNumbers = []
+        add(a, b);
+        right = [a, op]
+        console.log(a)
+        return right = [a, op]
+    } 
+    else if (right[1] === '-' || right[1] === 'x'|| right[1] === '/') {
+        b = keyedNumbers.join('')
+        a = right[0]
+        op = right[1]
+        next = '+'
+        operate(a, op, b, next)
+    }
+    else {
+        a = keyedNumbers.join('')
+        keyedNumbers = []
+        right = [a, op]
+        console.log(right)
+        return right
+    } 
+});
+
+
 let btnSub = document.querySelector('#subtract');
 
 btnSub.addEventListener('click',(event) => {
@@ -83,14 +186,22 @@ btnSub.addEventListener('click',(event) => {
         return false
     }
 
-    if (right[1] === '+' || right[1] === '-' || right[1] === 'x'|| right[1] === '/') {
+    if (right[1] === '-') {
         let b = keyedNumbers.join('')
         keyedNumbers = []
         a = (a) - (b);
         right = [a, op]
         console.log(a)
         return right = [a, op]
-    } else {
+    } 
+    else if (right[1] === '+' || right[1] === 'x'|| right[1] === '/') {
+        b = keyedNumbers.join('')
+        a = right[0]
+        op = right[1]
+        next = '-'
+        operate(a, op, b, next)
+    }
+    else {
         a = keyedNumbers.join('')
         keyedNumbers = []
         right = [a, op]
@@ -109,14 +220,22 @@ btnMul.addEventListener('click',(event) => {
         return false
     }
 
-    if (right[1] === '+' || right[1] === '-' || right[1] === 'x'|| right[1] === '/') {
+    if (right[1] === 'x') {
         let b = keyedNumbers.join('')
         keyedNumbers = []
-        a = (a) * b;
+        a = (a) * (b);
         right = [a, op]
         console.log(a)
-        return right
-    } else {
+        return right = [a, op]
+    } 
+    else if (right[1] === '+' || right[1] === '-'|| right[1] === '/') {
+        b = keyedNumbers.join('')
+        a = right[0]
+        op = right[1]
+        next = 'x'
+        operate(a, op, b, next)
+    }
+     else {
         a = keyedNumbers.join('')
         keyedNumbers = []
         right = [a, op]
@@ -126,28 +245,39 @@ btnMul.addEventListener('click',(event) => {
 });
 
 
-//Equals
-let btnequ = document.querySelector('#equal');
+let btnDiv = document.querySelector('#divide');
 
-btnequ.addEventListener('click',(event) => {
-    b = keyedNumbers.join('')
+btnDiv.addEventListener('click',(event) => {
+    op = '/'
 
-    if (right[1] === '+') {
-        console.log(right[0] + b)
-    }else if (right[1] === '-') {
-        console.log((right[0]) - (b))
-    } else {
-        console.log(right[0] * b)
+    if (keyedNumbers.length < 1){
+        console.log('woops')
+        return false
     }
-    
-    console.log('clicked equals');
+
+    if (right[1] === '/') {
+        let b = keyedNumbers.join('')
+        keyedNumbers = []
+        a = (a) / (b);
+        right = [a, op]
+        console.log(a)
+        return right = [a, op]
+    } 
+    else if (right[1] === '+' || right[1] === '-'|| right[1] === 'x') {
+        b = keyedNumbers.join('')
+        a = right[0]
+        op = right[1]
+        next = '/'
+        operate(a, op, b, next)
+    }
+     else {
+        a = keyedNumbers.join('')
+        keyedNumbers = []
+        right = [a, op]
+        console.log(right)
+        return right
+    } 
 });
-
-
-//Test
-// let testOp = function(x) {
-//     x
-// }
 
 
 /*Operate function 
@@ -155,27 +285,25 @@ If a second operator gets pushed before the equals then that needs to call the f
 This could replace the entire array (x from above).
 Equals also calls the function
 */
-let operate = function(a, op, b) {
-    let subTotal = 0
-    if (op === '+') {
-        a = add(a, b)
-    } else if (op === '-') {
-        a = subtract(a, b)
-    } else if (op === '*') {
-        a = multiply(a, b)
-    } else if (b === 0 && op === '/') {
-        return 'Absolutely not.'
-    }
-     else {
-        a = divide(a, b)
-    }
 
-    console.log(a)
 
-    return a
-}
+//Equals
+let btnequ = document.querySelector('#equal');
 
-// console.log(operate(5, '/', 2))
+btnequ.addEventListener('click',(event) => {
+    b = keyedNumbers.join('')
+    a = right[0]
+    op = right[1]
 
-// console.log(add(5, 8))
-// console.log(subtract(10, 7))
+    operate(a, op, b)
+    
+    keyedNumbers = []
+    right = []
+    left = []
+    op = ''
+
+    console.log('clicked equals');
+    console.log(result)
+
+    result = ''
+});
